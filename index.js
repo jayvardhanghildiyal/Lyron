@@ -44,7 +44,7 @@ bot.on("message", (message) => {
         .setColor(0xffa500);
       message.channel.send(son);
       break;
-
+//this is a comment for testing purposes
     case "clear":
       if (!args[1])
         return message.reply("You didnt define the second arguement");
