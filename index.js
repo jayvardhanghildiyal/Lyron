@@ -1,4 +1,4 @@
-const { Client, MessageEmbed } = require("discord.js");
+const {Client, MessageEmbed} = require("discord.js");
 const bot = new Client();
 
 const token = "NzAwOTU1NTk0NTcxNjQ0OTQ5.Xpqenw.gmts-BWUS4rukWbXf9DfhYSU63I";
@@ -6,7 +6,7 @@ const token = "NzAwOTU1NTk0NTcxNjQ0OTQ5.Xpqenw.gmts-BWUS4rukWbXf9DfhYSU63I";
 const PREFIX = "*";
 
 bot.on("ready", () => {
-  bot.user.setActivity("you type *help for help", { type: "WATCHING" });
+  bot.user.setActivity("you type *help for help", {type: "WATCHING"});
 
   console.log("I am regaining consciousness....");
 });
@@ -44,7 +44,7 @@ bot.on("message", (message) => {
         .setColor(0xffa500);
       message.channel.send(son);
       break;
-//this is a comment for testing purposes
+
     case "clear":
       if (!args[1])
         return message.reply("You didnt define the second arguement");
@@ -61,6 +61,65 @@ bot.on("message", (message) => {
       message.author.send(embed);
       message.channel.send("Check ya DMs");
       break;
+
+    case "PurgeChat":
+      var server = message.guild
+      var name = "24-hour-cooldown";
+
+      var role = server.roles.cache.find(r => r.name == "BraveHeart")
+      if (!role) {
+        message.reply("Roles not set. Contact Admin")
+        return
+      }
+
+      let oldChannel = server.channels.cache.find(c => c.name == name && c.type == "text")
+      if (oldChannel) oldChannel.delete()
+
+      server.channels.create(name, {
+        type: 'text',
+        nsfw: 'true',
+        topic: 'CONTENTS OF THIS CHANNELS IS DELETED EVERY 24 HOURS!USE THIS CHANNEL IN ANY WAY! HAVE FUN!'
+      })
+        .then(channel => {
+          let cat = server.channels.cache.find(c => c.name == "⊰ Dangerous Realms ⊱" && c.type == "category")
+
+          if (!cat) return;
+          channel.setParent(cat.id);
+
+          if (role) {
+            channel.overwritePermissions([
+              {
+                id: server.roles.everyone,
+                deny: ['VIEW_CHANNEL']
+              },
+              {
+                id: role.id,
+                allow: ['VIEW_CHANNEL']
+              }
+            ])
+          }
+        }).catch(console.error);
+      break;
+
+    case "brave":
+      var server = message.guild
+      var author = server.members.cache.find(member => member.id == message.author.id)
+      var role = server.roles.cache.find(r => r.name == "BraveHeart")
+
+      if (!role) {
+        message.reply("Roles not set. Contact Admin")
+        return
+      }
+      if (author.roles.cache.find(r => r.name == "BraveHeart")) {
+        author.roles.remove(role)
+        message.reply("You lost Brave Role Previlage")
+      }
+      else {
+        author.roles.add(role)
+        message.reply("You get the Brave Role")
+      }
+      break;
+
   }
 });
 
