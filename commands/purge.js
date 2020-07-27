@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const Discord = require("discord.js")
 
 module.exports = {
     name : "purge",
@@ -46,5 +46,18 @@ module.exports = {
             ])
           }
         }).catch(console.error);
+
+        const yeet = new Discord.MessageEmbed()
+        .setAuthor("INFINITE POWER!","https://w7.pngwing.com/pngs/249/967/png-transparent-musical-ensemble-music-school-art-week-end-logo-computer-wallpaper-classical-music.png")
+        .setDescription(
+          "Feels good right?"
+        )
+        .setTimestamp()
+        .setFooter("Purged","https://w7.pngwing.com/pngs/249/967/png-transparent-musical-ensemble-music-school-art-week-end-logo-computer-wallpaper-classical-music.png")
+        .setColor(0x00ffff);
+        
+        //next problem to work on gonna do that
+        
+      
     }
 }
