@@ -5,7 +5,7 @@ module.exports = {
     descriptiom : "gives a list of edms",
     execute(message,args){
         const lol = new Discord.MessageEmbed()
-        .setAuthor("Here's The Playlist","https://w7.pngwing.com/pngs/249/967/png-transparent-musical-ensemble-music-school-art-week-end-logo-computer-wallpaper-classical-music.png")
+        .setAuthor("Click here to check out this playlist on Spotify!","https://w7.pngwing.com/pngs/249/967/png-transparent-musical-ensemble-music-school-art-week-end-logo-computer-wallpaper-classical-music.png","https://open.spotify.com/playlist/1Bh4Tc47H1PLLcBinKfaMT?si=aAV-pw3GTzSGs8DYkZWw9g")
         .addFields(
           {name: '3rd Prototype', value: 'Feels So Good', inline: true},
           {name: 'Unknown Brain', value: 'Waiting', inline: true},
