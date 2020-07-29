@@ -7,7 +7,7 @@ module.exports = {
         const embed = new Discord.MessageEmbed()
         .setAuthor("I'm Here To Help!","https://w7.pngwing.com/pngs/249/967/png-transparent-musical-ensemble-music-school-art-week-end-logo-computer-wallpaper-classical-music.png")
         .setDescription(
-          "These are the commands you can use on me:"
+          "These are the commands you can use:"
         )
         .addFields(
           {name: '*hey:', value: 'Just because I am a bot, why not share greetings with me?'},
@@ -16,6 +16,7 @@ module.exports = {
           {name: '*privacy:', value: 'Learn about my privacy policies'},
           {name: '*purge:', value: 'This command can be used by Higher Ranks to purge the 24 hr cooldown chat'},
           {name: '*brave:', value: 'This command gives permit to check out the 24 hr cooldown channel'},
+          {name: '*music:', value: 'Directs you to multiple Spotify playlists to enjoy!'},
 
         )
         .setTimestamp()

@@ -9,7 +9,7 @@ module.exports = {
 
       var role = server.roles.cache.find(r => r.name == "BraveHeart")
       if (!role) {
-        message.reply("Roles not set. Contact Admin")
+        message.reply("Roles not set. Contact Admin.")
         return
       }
       var botRole = server.roles.cache.find(r => r.name == "Lyron")
