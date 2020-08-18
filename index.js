@@ -1,12 +1,10 @@
-//const {Client, MessageEmbed} = require("discord.js");
-var Discord = require("discord.js")
-var bot = new Discord.Client();
 
-const token = "NzAwOTU1NTk0NTcxNjQ0OTQ5.Xpqenw.gmts-BWUS4rukWbXf9DfhYSU63I";
+const Discord = require("discord.js")
+const bot = new Discord.Client();
 
-const PREFIX = "*";
+const { token ,PREFIX} = require("./config.json")
 
-
+// const PREFIX = "*";
 
 const fs = require('fs');
 bot.commands = new Discord.Collection();
