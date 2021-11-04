@@ -1,7 +1,4 @@
 # Lyron
-Discord bot for our noice server
+Discord bot for my server :3
 
-Well hey!
-
-
-i know you cant see this shit coz this repo private so fuck off nothing to see here
+A bot that provides lyrics and top songs!
