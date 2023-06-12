@@ -1,84 +1,52 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
+const { token } = require('./config.json');
 
-const Discord = require("discord.js")
-const bot = new Discord.Client();
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
-const { token ,PREFIX} = require("./config.json")
 
-// const PREFIX = "*";
+//searching through subfolders to search for the correct commands (purely for the purpose of organization)
+client.commands = new Collection();
+const foldersPath = path.join(__dirname, 'commands');
+const commandFolders = fs.readdirSync(foldersPath);
 
-const fs = require('fs');
-bot.commands = new Discord.Collection();
- 
-const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
-for(const file of commandFiles){
-    const command = require(`./commands/${file}`);
- 
-    bot.commands.set(command.name, command);
+for (const folder of commandFolders) {
+	const commandsPath = path.join(foldersPath, folder);
+	const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+	for (const file of commandFiles) {
+		const filePath = path.join(commandsPath, file);
+		const command = require(filePath);
+		// Set a new item in the Collection with the key as the command name and the value as the exported module
+		if ('data' in command && 'execute' in command) {
+			client.commands.set(command.data.name, command);
+		} else {
+			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+		}
+	}
 }
 
+//interaction listener that enables discord to execute my commands
+client.on(Events.InteractionCreate, async interaction => {
+	if (!interaction.isChatInputCommand()) return;
 
+	//gets the command name
+	const command = interaction.client.commands.get(interaction.commandName);
 
-bot.on("ready", () => {
-  bot.user.setActivity("you type *help", {type: "WATCHING"});
+	//error message if command not found
+	if (!command) {
+		console.error(`No command matching ${interaction.commandName} was found.`);
+		return;
+	}
 
-  console.log("I am regaining consciousness....");
+	try {
+		await command.execute(interaction);
+	} catch (error) {
+		console.error(error);
+		if (interaction.replied || interaction.deferred) {
+			await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
+		} else {
+			await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+		}
+	}
 });
-
-bot.on("message", (message) => {
-
-
-  if(!message.content.startsWith(PREFIX) || message.author.bot) return;
-
-  const args = message.content.slice(PREFIX.length).split(/ +/);
-  const command = args.shift().toLowerCase();
-
-  //method one
-  
-  if (!bot.commands.has(command)){
-    message.reply("Ayy that command doesn't exist.");
-  return;}
-
-  try {
-    bot.commands.get(command).execute(message, args);
-  } catch (error) {
-    console.error(error);
-    message.reply('there was an error trying to execute that command!');
-  }
-
-  //method (zero) 2 [waifu UwU]
-
-  // switch (command) {
-  //   case "privacy":
-  //     bot.commands.get("privacy").execute(message,args);
-  //     break;
-
-  //   case "hey":
-  //     bot.commands.get("hey").execute(message,args);
-  //     break;
-
-  //   case "edm":
-  //     bot.commands.get("edm").execute(message,args);
-  //     break;
-
-  //   case "lofi":
-  //     bot.commands.get("lofi").execute(message,args);
-  //     break;
-
-
-  //   case "help":
-  //     bot.commands.get("help").execute(message,args);
-  //     break;
-
-  //   case "purge":
-      
-  //     bot.commands.get("purge").execute(message,args);
-  //     break;
-
-  //   case "brave":
-  //     bot.commands.get("brave").execute(message,args);
-  //     break;
-
-  // }
-});
-
-bot.login(token);
