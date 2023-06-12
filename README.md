@@ -1,4 +1,6 @@
 # Lyron
-Discord bot for my server :3
+Lyron is a work in progress, discord.js powered bot that will perform moderator taks, role assignment and a lot more.
 
-A bot that provides lyrics and top songs!
+
+
+
