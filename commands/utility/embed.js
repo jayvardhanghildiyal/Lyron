@@ -22,7 +22,7 @@ const exampleEmbed = new EmbedBuilder()
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('embed')
-		.setDescription('Provides a default embed.'),
+		.setDescription('Provides a role-react server embed.'),
 	async execute(interaction) {
 		// interaction.guild is the object representing the Guild in which the command was run
 		await interaction.reply({ embeds: [exampleEmbed]});
