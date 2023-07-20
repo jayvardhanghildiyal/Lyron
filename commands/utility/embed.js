@@ -14,6 +14,7 @@ const exampleEmbed = new EmbedBuilder()
 		{ name: 'Overwatch', value: '<:FeelsAngyMan:1105006093580640287>'},
         { name: 'Honkai: Star Rail  ', value: '<:mommysorry:1104858049384042558>'},
         { name: 'Terraria', value: '<:terraria:1120393551608549467>'},
+		{ name: 'Leauge of Legends', value: '<:league:1131542996337311764>'},
 	)
 	.setImage('https://static.wikia.nocookie.net/houkai-star-rail/images/9/95/Character_Kafka_Splash_Art.png/revision/latest/scale-to-width-down/1000?cb=20230216230656')
 	.setTimestamp()
