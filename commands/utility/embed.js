@@ -4,20 +4,20 @@ const thumbnail = new AttachmentBuilder('./commands/utility/assets/thumbnail.png
 const icon = new AttachmentBuilder('./commands/utility/assets/icon.png');
 
 const exampleEmbed = new EmbedBuilder()
-	.setColor(0xa8326b)
-	.setAuthor({ name: 'Welcome to Kafka\'s Doormat!', iconURL: 'https://static.wikia.nocookie.net/houkai-star-rail/images/5/57/Welt_Sticker_01.png/revision/latest?cb=20230505074133', url: 'https://twitter.com/DailyKafka_/status/1667073693019930624?s=20' })
-	.setDescription('React to the roles to get pinged for that particular game !')
-	.setThumbnail('https://static.wikia.nocookie.net/04b90080-e34c-4029-ac72-625827fa6757')
+	.setColor(0xFFD700)
+	.setAuthor({ name: 'Welcome to Kafka\'s Doormat!', iconURL: 'https://genshinlab.com/wp-content/uploads/Wuthering-Waves-Rover.png' })
+	.setDescription('React to the emotes to recieve roles !')
+	.setThumbnail('https://static.wikia.nocookie.net/wutheringwaves/images/a/a1/Female_Rover_1.jpg/revision/latest?cb=20240419041112')
 	.addFields(
 		{ name: 'Valorant', value: '<:sweating:1104860877947150336>' },
 		{ name: 'Apex Legends', value: '<:apexlogo:1104863303014035507>'},
 		{ name: 'Overwatch', value: '<:FeelsAngyMan:1105006093580640287>'},
-        { name: 'Honkai: Star Rail  ', value: '<:mommysorry:1104858049384042558>'},
         { name: 'Terraria', value: '<:terraria:1120393551608549467>'},
-		{ name: 'Leauge of Legends', value: '<:league:1131542996337311764>'},
+		{ name: 'League of Legends', value: '<:league:1131542996337311764>'},
 		{ name: 'Minecraft', value: '<:minecraft:1149742204177371186>'},
+		{ name: 'Wuthering Waves', value: '<:baizhi:1243289325546770605>'},
 	)
-	.setImage('https://static.wikia.nocookie.net/houkai-star-rail/images/9/95/Character_Kafka_Splash_Art.png/revision/latest/scale-to-width-down/1000?cb=20230216230656')
+	.setImage('https://img3.gelbooru.com/images/7b/be/7bbea3a42fe6418deb14b82819b277a2.jpg')
 	.setTimestamp()
 	.setFooter({ text: 'react to roles to get roles WOW !' });
 
